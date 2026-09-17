@@ -1,5 +1,11 @@
 public class MergeSort {
 
+    private static void swap(int[] array, int i, int j) {
+        int temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+
     public static void mergeSort(int[] dataset){
         if (dataset == null || dataset.length < 1){
             return;
@@ -11,10 +17,10 @@ public class MergeSort {
     }
 
     private static void mergeSort(int[] dataset, int[] buffer, int left, int right){
-//        if (right - left + 1 <= 15){
-//            insertionSort(dataset);
-//        return;
-//        }
+        if (right - left + 1 <= 15){
+            insertionSort(dataset, left, right);
+        return;
+        }
 
         int mid = left + (right - left) / 2;
 
@@ -55,4 +61,20 @@ public class MergeSort {
         }
     }
 
+    private static void insertionSort(int[] dataset, int left, int right){
+        int buf = 0;
+        int elem = 0;
+        int j = 0;
+        for (int i = left + 1; i < right; i++) {
+            elem = dataset[i];
+            j = i - 1;
+
+            while (j >= 0 && dataset[j] > elem){
+                dataset[j + 1] = dataset[j];
+                j -= 1;
+            }
+
+            dataset[j + 1] = elem;
+        }
+    }
 }
