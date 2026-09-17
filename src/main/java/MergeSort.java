@@ -7,7 +7,7 @@ public class MergeSort {
     }
 
     public static void mergeSort(int[] dataset){
-        if (dataset == null || dataset.length < 1){
+        if (dataset == null || dataset.length <= 1){
             return;
         }
 
@@ -39,24 +39,19 @@ public class MergeSort {
         int right_buffer = mid + 1;
         int dataset_index = left;
 
-        while (left_buffer < mid && right_buffer < right + 1){
-            if (buffer[left_buffer] < buffer[right_buffer]){
+        while (left_buffer <= mid && right_buffer < right + 1){
+            if (buffer[left_buffer] <= buffer[right_buffer]){
                 dataset[dataset_index] = buffer[left_buffer];
                 left_buffer++;
-            } else if (buffer[right_buffer] < buffer[left_buffer]) {
-                dataset[dataset_index] = buffer[left_buffer];
+            } else{
+                dataset[dataset_index] = buffer[right_buffer];
                 right_buffer++;
             }
             dataset_index++;
         }
-        while (left_buffer < mid){
+        while (left_buffer <= mid){
             dataset[dataset_index] = buffer[left_buffer];
             left_buffer++;
-            dataset_index++;
-        }
-        while (right_buffer < mid){
-            dataset[dataset_index] = buffer[right_buffer];
-            right_buffer++;
             dataset_index++;
         }
     }
@@ -65,11 +60,11 @@ public class MergeSort {
         int buf = 0;
         int elem = 0;
         int j = 0;
-        for (int i = left + 1; i < right; i++) {
+        for (int i = left + 1; i <= right; i++) {
             elem = dataset[i];
             j = i - 1;
 
-            while (j >= 0 && dataset[j] > elem){
+            while (j >= left && dataset[j] > elem){
                 dataset[j + 1] = dataset[j];
                 j -= 1;
             }
