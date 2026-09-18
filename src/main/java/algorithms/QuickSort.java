@@ -2,6 +2,7 @@ package algorithms;
 
 import java.util.Random;
 
+import static utils.HelpFunctions.partition;
 import static utils.HelpFunctions.swap;
 
 public class QuickSort {
@@ -29,37 +30,5 @@ public class QuickSort {
                 high = borders[0] - 1;
             }
         }
-    }
-
-    private static int[] partition(int[] dataset, int low, int high){
-        Random random = new Random();
-
-        int random_index = random.nextInt(high - low + 1) + low;
-        swap(dataset, high, random_index);
-        int pivot = dataset[high];
-
-        int ltp = low;
-        int ep = low;
-        int htp = high;
-
-        int[] borders = new int[2];
-
-        while(ep <= htp){
-            if(dataset[ep] < pivot){
-                swap(dataset, ltp, ep);
-                ltp++;
-                ep++;
-            } else if (dataset[ep] > pivot) {
-                swap(dataset, htp, ep);
-                htp--;
-            } else {
-                ep++;
-            }
-        }
-
-        borders[0] = ltp;
-        borders[1] = htp;
-
-        return borders;
     }
 }
