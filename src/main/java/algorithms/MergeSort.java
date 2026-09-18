@@ -1,10 +1,8 @@
-public class MergeSort {
+package algorithms;
 
-    private static void swap(int[] array, int i, int j) {
-        int temp = array[i];
-        array[i] = array[j];
-        array[j] = temp;
-    }
+import static utils.InsertionSort.insertionSort;
+
+public class MergeSort {
 
     public static void mergeSort(int[] dataset){
         if (dataset == null || dataset.length <= 1){
@@ -31,9 +29,7 @@ public class MergeSort {
     }
 
     private static void merge(int[] dataset, int[] buffer, int left, int mid, int right){
-        for (int i = left; i <= right ; i++) {
-            buffer[i] = dataset[i];
-        }
+        if (right + 1 - left >= 0) System.arraycopy(dataset, left, buffer, left, right + 1 - left);
 
         int left_buffer = left;
         int right_buffer = mid + 1;
@@ -56,20 +52,4 @@ public class MergeSort {
         }
     }
 
-    private static void insertionSort(int[] dataset, int left, int right){
-        int buf = 0;
-        int elem = 0;
-        int j = 0;
-        for (int i = left + 1; i <= right; i++) {
-            elem = dataset[i];
-            j = i - 1;
-
-            while (j >= left && dataset[j] > elem){
-                dataset[j + 1] = dataset[j];
-                j -= 1;
-            }
-
-            dataset[j + 1] = elem;
-        }
-    }
 }

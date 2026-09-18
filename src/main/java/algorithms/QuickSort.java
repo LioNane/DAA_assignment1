@@ -1,11 +1,10 @@
+package algorithms;
+
 import java.util.Random;
 
+import static utils.Swap.swap;
+
 public class QuickSort {
-    private static void swap(int[] array, int i, int j) {
-        int temp = array[i];
-        array[i] = array[j];
-        array[j] = temp;
-    }
 
     public static void quickSort(int[] dataset){
         if (dataset == null || dataset.length <= 1){
