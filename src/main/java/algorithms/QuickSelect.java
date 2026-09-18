@@ -4,31 +4,18 @@ import java.util.Random;
 
 import static utils.HelpFunctions.swap;
 
-public class QuickSort {
+public class QuickSelect {
 
-    public static void quickSort(int[] dataset){
-        if (dataset == null || dataset.length <= 1){
-            return;
+    public static int quickSelect(int[] arr, int k){
+        if (arr == null || arr.length <= 1 || !(k > 0) && !(k < arr.length - 1)){
+            throw new IllegalArgumentException("Invalid array");
         }
 
-        quickSort(dataset, 0, dataset.length - 1);
+        return select(arr, 0, arr.length - 1, k);
     }
 
-    private static void quickSort(int[] dataset, int low, int high){
-        while (low < high){
-            int[] borders = partition(dataset, low, high);
-
-            int leftSize = borders[0] - low;
-            int rightSize = high - borders[1];
-
-            if(leftSize < rightSize){
-                quickSort(dataset, low, borders[0] - 1);
-                low = borders[1] + 1;
-            } else {
-                quickSort(dataset, borders[1] + 1, high);
-                high = borders[0] - 1;
-            }
-        }
+    private static int select(int[] arr, int low, int high, int k){
+        return 0;
     }
 
     private static int[] partition(int[] dataset, int low, int high){
