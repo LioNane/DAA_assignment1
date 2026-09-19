@@ -1,5 +1,7 @@
 package utils;
 
+import metrics.Metrics;
+
 import java.util.Random;
 
 public class HelpFunctions {
@@ -10,7 +12,7 @@ public class HelpFunctions {
         array[j] = temp;
     }
 
-    public static int[] partition(int[] dataset, int low, int high){
+    public static int[] partition(int[] dataset, int low, int high, Metrics metrics){
         Random random = new Random();
 
         int random_index = random.nextInt(high - low + 1) + low;
@@ -24,11 +26,14 @@ public class HelpFunctions {
         int[] borders = new int[2];
 
         while(ep <= htp){
+
+            metrics.incrementComparisons();
             if(dataset[ep] < pivot){
                 swap(dataset, ltp, ep);
                 ltp++;
                 ep++;
             } else if (dataset[ep] > pivot) {
+                metrics.incrementComparisons();
                 swap(dataset, htp, ep);
                 htp--;
             } else {

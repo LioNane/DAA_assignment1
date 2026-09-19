@@ -1,32 +1,39 @@
 package algorithms;
 
-import java.util.Random;
+
+import metrics.Metrics;
 
 import static utils.HelpFunctions.partition;
-import static utils.HelpFunctions.swap;
 
 public class QuickSort {
 
-    public static void quickSort(int[] dataset){
+    public static void quickSort(int[] dataset, Metrics metrics){
         if (dataset == null || dataset.length <= 1){
             return;
         }
 
-        quickSort(dataset, 0, dataset.length - 1);
+        metrics.startTimer();
+        sort(dataset, 0, dataset.length - 1, 1, metrics);
+        metrics.stopTimer();
     }
 
-    private static void quickSort(int[] dataset, int low, int high){
+    private static void sort(int[] dataset, int low, int high, int currentDepth, Metrics metrics){
+
+        metrics.updateDepth(currentDepth);
+
         while (low < high){
-            int[] borders = partition(dataset, low, high);
+            int[] borders = partition(dataset, low, high, metrics);
 
             int leftSize = borders[0] - low;
             int rightSize = high - borders[1];
 
+            metrics.incrementComparisons();
+
             if(leftSize < rightSize){
-                quickSort(dataset, low, borders[0] - 1);
+                sort(dataset, low, borders[0] - 1, currentDepth + 1, metrics);
                 low = borders[1] + 1;
             } else {
-                quickSort(dataset, borders[1] + 1, high);
+                sort(dataset, borders[1] + 1, high, currentDepth + 1, metrics);
                 high = borders[0] - 1;
             }
         }

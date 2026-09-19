@@ -19,6 +19,9 @@ public class MergeSort {
     }
 
     private static void split(int[] dataset, int[] buffer, int left, int right, int currentDepth, Metrics metrics){
+
+        metrics.updateDepth(currentDepth);
+
         if (right - left + 1 <= 15){
             insertionSort(dataset, left, right, metrics);
         return;
@@ -39,7 +42,7 @@ public class MergeSort {
         int right_buffer = mid + 1;
         int dataset_index = left;
 
-        while (left_buffer <= mid && right_buffer < right + 1){
+        while (left_buffer <= mid && right_buffer <= right){
 
             metrics.incrementComparisons();
 

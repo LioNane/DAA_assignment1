@@ -19,7 +19,9 @@ public class Metrics {
     }
 
     public void updateDepth(int currentDepth){
-        maxDepth = currentDepth;
+        if (currentDepth > maxDepth) {
+            maxDepth = currentDepth;
+        }
     }
 
     public void startTimer(){
