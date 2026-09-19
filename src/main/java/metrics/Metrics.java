@@ -32,7 +32,7 @@ public class Metrics {
         endTime = System.nanoTime();
     }
 
-    public long getTimeMs(){
-        return (endTime - startTime) / 1000000;
+    public long getTimeNs(){
+        return endTime - startTime;
     }
 }
